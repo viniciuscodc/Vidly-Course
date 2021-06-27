@@ -1,0 +1,36 @@
+@model firstWebapp.ViewModels.CustomersViewModel;
+
+@{
+    ViewData["Title"] = "Customers";
+}
+
+@{
+    var className = Model.Customers.Count() > 5 ? "popular" : null;
+}
+
+<h2>Customers</h2>
+
+@if(Model.Customers.Count() == 0){
+
+    <p>No one has rented this movie before</p>
+
+}else{
+
+    <table class="table table-hover table-bordered">
+        
+        <tr>
+            <th>Customers</th>
+         </tr>
+
+            @foreach (var customer in Model.Customers)
+            {
+                <tr>
+                    <td>@Html.ActionLink(customer.Name, "Details", "Customers", new { id = customer.Id}, null)</td>
+                </tr>
+            }
+        
+    </table>
+
+}
+
+
